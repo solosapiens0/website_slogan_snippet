@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
   <!-- SNIPPET İÇERİĞİ -->
-  <template id="slogan_snippet_block" name="Slogan Snippet Block">
-    <section class="s_slogan_snippet text-center" data-snippet="s_slogan_snippet" data-name="Slogan Snippet">
+  <template id="slogan_snippet_block" name="Homepage Slogan">
+    <section class="s_slogan_snippet text-center" data-snippet="s_slogan_snippet" data-name="Homepage Slogan">
       <div class="container py-5">
-        <h2 t-esc="env['ir.config_parameter'].sudo().get_param('website_slogan_snippet.slogan') or 'Varsayılan Slogan'"/>
+        <h2 t-esc="env['ir.config_parameter'].sudo().get_param('website_slogan_snippet.slogan') or 'Slogan Buraya Gelecek'" />
       </div>
     </section>
   </template>
 
   <!-- BLOKLAR PANELİNE EKLEME -->
-  <template id="slogan_snippet_register" inherit_id="website.snippets" name="Slogan Snippet Register">
+  <template id="slogan_snippet_register" inherit_id="website.snippets" name="Register Homepage Slogan Snippet">
     <xpath expr="//div[@id='snippet_structure']" position="inside">
       <t t-snippet="website_slogan_snippet.slogan_snippet_block"
          t-thumbnail="/website_slogan_snippet/static/description/icon.png"
-         t-name="Slogan Snippet"/>
+         t-name="Homepage Slogan Snippet"/>
     </xpath>
   </template>
 
