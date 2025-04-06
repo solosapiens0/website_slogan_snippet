@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- SNIPPET İÇERİĞİ -->
+  <template id="slogan_snippet_block" name="Slogan Snippet Block">
+    <section class="s_slogan_snippet text-center" data-snippet="s_slogan_snippet" data-name="Slogan Snippet">
+      <div class="container py-5">
+        <h2 t-esc="env['ir.config_parameter'].sudo().get_param('website_slogan_snippet.slogan') or 'Varsayılan Slogan'"/>
+      </div>
+    </section>
+  </template>
+
+  <!-- BLOKLAR PANELİNE EKLEME -->
+  <template id="slogan_snippet_register" inherit_id="website.snippets" name="Slogan Snippet Register">
+    <xpath expr="//div[@id='snippet_structure']" position="inside">
+      <t t-snippet="website_slogan_snippet.slogan_snippet_block"
+         t-thumbnail="/website_slogan_snippet/static/description/icon.png"
+         t-name="Slogan Snippet"/>
+    </xpath>
+  </template>
+
+  <!-- RES CONFIG SETTINGS GÖRÜNÜMÜ -->
+  <record id="res_config_settings_view_form_inherit_slogan" model="ir.ui.view">
+    <field name="name">res.config.settings.view.form.inherit.slogan</field>
+    <field name="model">res.config.settings</field>
+    <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//div[@id='company_name']" position="before">
+        <div class="app_settings_block" data-string="Slogan Ayarı" string="Slogan Ayarı">
+          <div class="row mt16 o_settings_container">
+            <div class="col-12 col-md-6 o_setting_box">
+              <div class="o_setting_right_pane">
+                <label for="website_slogan" string="Anasayfa Sloganı"/>
+                <div class="text-muted">Bu metin web sitesindeki slogan snippet'inde görüntülenecektir.</div>
+                <div class="content-group mt16">
+                  <field name="website_slogan" placeholder="Örn: Kalite, Güven, Hız..."/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </xpath>
+    </field>
+  </record>
+</odoo>
